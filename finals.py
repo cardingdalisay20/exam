@@ -4,7 +4,7 @@ from booking import Booking
 import os
 
 
-def ask(args):
+def check(args):
     if args == 1:
         register()
     elif args == 2:
@@ -20,11 +20,20 @@ def ask(args):
     elif args == 7:
         exit()
 
+def inclusionMenu():
+    key = raw_input("Would you like to add inclusions? [Y]es/[N]o: ")
+    return key
+
+
+def saveMenu():
+    choice = raw_input("Would you like to save changes? [Y]es/[N]o: ")
+    return choice
+
 # displays the main menu
 def menu():
     print("****************************")
     print("* 1. REGISTER CUSTOMER     *")
-    print("* 2. CREATE TOUR PACKAGE   *")
+    print("* 2. CREATE EVENT          *")
     print("* 3. BOOK A TOUR           *")
     print("* 4. CHECK BOOKING         *")
     print("* 5. UPDATE BOOKING        *")
@@ -36,18 +45,28 @@ def menu():
 def register():
     os.system('clear')
     model = User()
-
     model.setFname(raw_input("First Name: "))
     model.setLname(raw_input("Last Name: "))
     model.setAddress(raw_input("Address: "))
     model.setContact(raw_input("Contact Number: "))
     model.setFullname()
-
-    print(model.full_name)
+    exit()
 
 # create tour packages
 def createPackage():
-    print("create package")
+    os.system('clear')
+    event = Package()
+    event.setEventName(raw_input("Event Name: "))
+    event.setLocation(raw_input("Event Location: "))
+    event.setDuration(raw_input("Duration in Hrs: "))
+    event.setRate(raw_input("Rate per Head: "))
+
+    key = inclusionMenu()
+    while key == "Y" or key == "y":
+        event.addInclusion(raw_input("Inclusion: "))
+        key = inclusionMenu()
+    exit()
+
 
 # book tour packages
 def bookTour():
@@ -71,7 +90,7 @@ def start():
     menu()
     try:
         args = int(input("PLEASE CHOOSE YOUR OPTION: "))
-        ask(args)
+        check(args)
     except ValueError:
         print("\n")
         print("ERROR! PLEASE CHOOSE THE CORRECT OPTION FROM THE MENU!")

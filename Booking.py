@@ -4,5 +4,5 @@ class Booking:
         self.package_type = ''
         self.number_of_pax = ''
         self.amount_due = ''
+        self.receipt_number = ''
         self.payment_status = ''
-

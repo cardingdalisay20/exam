@@ -20,3 +20,8 @@ class User:
 
     def setFullname(self):
         self.full_name = self.first_name + ' ' + self.last_name
+
+    def __repr__(self):
+        return "<User: {}>".format(self.full_name)
+
+

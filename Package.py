@@ -1,23 +1,26 @@
 class Package:
 
     def __init__(self):
-        self.package_name = ''
+        self.event_name = ''
         self.location = ''
         self.duration_hours = ''
-        self.price_per_head = ''
+        self.head_rate = ''
         self.inclusion = []
 
-    def setPaxName(self):
-        self.package_name = input("Package Name:")
+    def setEventName(self, args):
+        self.event_name = args
 
-    def setTourLoc(self):
-        self.location = input("Tour Location: ")
+    def setLocation(self, args):
+        self.location = args
 
-    def setDuration(self):
-        self.duration_hours = input("Number of Hours: ")
+    def setDuration(self, args):
+        self.duration_hours = args
 
-    def setRate(self, rate):
-        self.pax_rate = input("Rate/Pax: ")
+    def setRate(self, args):
+        self.head_rate = args
 
-    def setInclusion(self):
-        self.inclusion = input("Inclusions:")
+    def addInclusion(self, args):
+        self.inclusion.append(args)
+
+    def __repr__(self):
+        return "<Package: {}>".format(self.event_name)
