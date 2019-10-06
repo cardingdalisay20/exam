@@ -1,9 +1,9 @@
+import os
 from user import User
 from package import Package
-from booking import Booking
-import os
+# from booking import Booking
 
-
+# validating the menu choices
 def check(args):
     if args == 1:
         register()
@@ -20,14 +20,15 @@ def check(args):
     elif args == 7:
         exit()
 
+# menu for adding inclusions yes or no
 def inclusionMenu():
     key = raw_input("Would you like to add inclusions? [Y]es/[N]o: ")
     return key
 
-
+# menu to ask for changes yes or no
 def saveMenu():
-    choice = raw_input("Would you like to save changes? [Y]es/[N]o: ")
-    return choice
+    key = raw_input("Would you like to save changes? [Y]es/[N]o: ")
+    return key
 
 # displays the main menu
 def menu():
@@ -66,7 +67,6 @@ def createPackage():
         event.addInclusion(raw_input("Inclusion: "))
         key = inclusionMenu()
     exit()
-
 
 # book tour packages
 def bookTour():
