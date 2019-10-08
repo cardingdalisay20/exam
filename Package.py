@@ -7,6 +7,9 @@ class Package:
         self.head_rate = ''
         self.inclusion = []
 
+    def __repr__(self):
+        return "<Package: {}>".format(self.event_name)
+
     def setEventName(self, args):
         self.event_name = args
 
@@ -21,6 +24,3 @@ class Package:
 
     def addInclusion(self, args):
         self.inclusion.append(args)
-
-    def __repr__(self):
-        return "<Package: {}>".format(self.event_name)

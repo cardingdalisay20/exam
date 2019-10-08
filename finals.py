@@ -1,6 +1,7 @@
 import os
 from user import User
 from package import Package
+from record import Record
 # from booking import Booking
 
 # validating the menu choices
@@ -18,16 +19,13 @@ def check(args):
     elif args == 6:
         cancelBooking()
     elif args == 7:
+        check_db()
+    elif args == 8:
         exit()
 
 # menu for adding inclusions yes or no
-def inclusionMenu():
-    key = raw_input("Would you like to add inclusions? [Y]es/[N]o: ")
-    return key
-
-# menu to ask for changes yes or no
-def saveMenu():
-    key = raw_input("Would you like to save changes? [Y]es/[N]o: ")
+def option(message):
+    key = raw_input("{}? [Y]es/[N]o: " . format(message))
     return key
 
 # displays the main menu
@@ -39,7 +37,8 @@ def menu():
     print("* 4. CHECK BOOKING         *")
     print("* 5. UPDATE BOOKING        *")
     print("* 6. CANCEL BOOKING        *")
-    print("* 7. EXIT                  *")
+    print("* 7. CHECK DB CONNECTION   *")
+    print("* 8. EXIT                  *")
     print("****************************")
 
 # registers customer
@@ -51,7 +50,13 @@ def register():
     model.setAddress(raw_input("Address: "))
     model.setContact(raw_input("Contact Number: "))
     model.setFullname()
-    exit()
+    choice = option("Would you like to save changes")
+    if choice == "Y":
+        model.save()
+        print("User records successfully saved!")
+    else:
+        exit()
+
 
 # create tour packages
 def createPackage():
@@ -62,11 +67,10 @@ def createPackage():
     event.setDuration(raw_input("Duration in Hrs: "))
     event.setRate(raw_input("Rate per Head: "))
 
-    key = inclusionMenu()
+    key = option("Would you like to add inclusions")
     while key == "Y" or key == "y":
         event.addInclusion(raw_input("Inclusion: "))
-        key = inclusionMenu()
-    exit()
+        key = option("Would you like to add more inclusions")
 
 # book tour packages
 def bookTour():
@@ -84,7 +88,10 @@ def updateBooking():
 def cancelBooking():
     print("cancel booking")
 
-# initializes the program
+def check_db():
+    Record.runQuery("insert into users(first_name, last_name, address, contact_number) values ('ezra john', 'sy', 'upper new capitol site', '123456');"'')
+
+    # initializes the program
 def start():
     os.system('clear')
     menu()
