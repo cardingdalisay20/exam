@@ -82,7 +82,7 @@ def checkBooking():
 
 # update existing booking record
 def updateBooking():
-    print("update booking")
+    user_name = raw_input("P")
 
 # cancel existing booking record
 def cancelBooking():
