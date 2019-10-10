@@ -50,12 +50,18 @@ def register():
     model.setAddress(raw_input("Address: "))
     model.setContact(raw_input("Contact Number: "))
     model.setFullname()
+
     choice = option("Would you like to save changes")
     if choice == "Y":
         model.save()
         print("User records successfully saved!")
     else:
-        exit()
+        start()
+    choice = option("Would you like to register another user")
+    if choice == "Y":
+        register()
+    else:
+        start()
 
 
 # create tour packages
@@ -66,11 +72,24 @@ def createPackage():
     event.setLocation(raw_input("Event Location: "))
     event.setDuration(raw_input("Duration in Hrs: "))
     event.setRate(raw_input("Rate per Head: "))
+    event.addInclusion(raw_input("Inclusion: "))
 
-    key = option("Would you like to add inclusions")
-    while key == "Y" or key == "y":
-        event.addInclusion(raw_input("Inclusion: "))
-        key = option("Would you like to add more inclusions")
+    # key = option("Would you like to add inclusions")
+    # while key == "Y" or key == "y":
+    #     event.addInclusion(raw_input("Inclusion: "))
+    #     key = option("Would you like to add more inclusions")
+
+    choice = option("Would you like to save changes")
+    if choice == "Y":
+        event.save()
+        print("Event records successfully saved!")
+    else:
+        start()
+    choice = option("Would you like to create another event")
+    if choice == "Y":
+        createPackage()
+    else:
+        start()
 
 # book tour packages
 def bookTour():
@@ -78,18 +97,19 @@ def bookTour():
 
 # check existing booking record
 def checkBooking():
-    print("check booking")
+    records = User.getbyID(3)
+    print(records)
 
 # update existing booking record
 def updateBooking():
-    user_name = raw_input("P")
+    print("update booking")
 
 # cancel existing booking record
 def cancelBooking():
     print("cancel booking")
 
 def check_db():
-    Record.runQuery("insert into users(first_name, last_name, address, contact_number) values ('ezra john', 'sy', 'upper new capitol site', '123456');"'')
+    Record.checkConnection()
 
     # initializes the program
 def start():

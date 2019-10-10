@@ -1,3 +1,5 @@
+from record import Record
+
 class Package:
 
     def __init__(self):
@@ -5,10 +7,10 @@ class Package:
         self.location = ''
         self.duration_hours = ''
         self.head_rate = ''
-        self.inclusion = []
+        self.inclusion = ''
 
     def __repr__(self):
-        return "<Package: {}>".format(self.event_name)
+        return "Package: {}".format(self.event_name)
 
     def setEventName(self, args):
         self.event_name = args
@@ -23,4 +25,9 @@ class Package:
         self.head_rate = args
 
     def addInclusion(self, args):
-        self.inclusion.append(args)
+        self.inclusion = args
+
+    def save(self):
+        query = "insert into packages(location, duration, head_rate, inclusion, event_name)" \
+                "VALUES('{0}','{1}','{2}','{3}','{4}');".format(self.location, self.duration_hours, self.head_rate, self.inclusion, self.event_name)
+        Record.runQuery(query)

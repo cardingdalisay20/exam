@@ -10,7 +10,7 @@ class User:
         self.contact_number = ''
 
     def __repr__(self):
-        return "<User: {}>".format(self.full_name)
+        return "User: {}".format(self.full_name)
 
     def setFname(self, args):
         self.first_name = args
@@ -28,8 +28,16 @@ class User:
         self.full_name = self.first_name + ' ' + self.last_name
 
     def save(self):
-        query = "insert into users(first_name, last_name, address, contact_number)" + "VALUES(" + self.first_name + ");"
+        query = "insert into users(first_name, last_name, address, contact_number)" \
+                "VALUES('{0}','{1}','{2}','{3}');".format(self.first_name, self.last_name, self.address, self.contact_number)
         Record.runQuery(query)
+
+    @staticmethod
+    def getbyID(userID):
+        query = "select * from users where user_id = ('{}');".format(userID)
+        userRecord = Record.fetchRecord(query)
+        return userRecord
+
 
 
 
