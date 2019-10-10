@@ -97,10 +97,14 @@ def bookTour():
 
 # check existing booking record
 def checkBooking():
-    records = User.getbyID(3)
-    print(records)
+    # package = Package.getbyID(6)
+    # print(package.event_name)
+    #
+    # user = User.getbyID(6)
+    # print(user.full_name)
 
 # update existing booking record
+    User.printUserRecords()
 def updateBooking():
     print("update booking")
 

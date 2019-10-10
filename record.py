@@ -58,7 +58,7 @@ class Record:
                     connection.close()
 
         @staticmethod
-        def fetchRecord(sql):
+        def fetchAllRecord(sql):
             try:
                 connection = psycopg2.connect(user=Record.user,
                 password="",
@@ -81,5 +81,31 @@ class Record:
                 if connection:
                     cursor.close()
                     connection.close()
+
+        @staticmethod
+        def fetchSingleRecord(sql):
+            try:
+                connection = psycopg2.connect(user=Record.user,
+                password="",
+                host=Record.host,
+                port=Record.port,
+                database=Record.database)
+
+                cursor = connection.cursor()
+                query = '''{}'''.format(sql)
+                cursor.execute(query)
+                record = cursor.fetchone()
+                connection.commit()
+
+                return record
+
+            except (Exception, psycopg2.DatabaseError) as error:
+                print (error)
+            finally:
+                # closing database connection.
+                if connection:
+                    cursor.close()
+                    connection.close()
+
 
 
