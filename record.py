@@ -16,12 +16,12 @@ class Record:
 
         @staticmethod
         def initConnect():
-            x = psycopg2.connect(user=Record.user,
+            connection = psycopg2.connect(user=Record.user,
                                           password="",
                                           host=Record.host,
                                           port=Record.port,
                                           database=Record.database)
-            return x
+            return connection
 
         @staticmethod
         def checkConnection():
