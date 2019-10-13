@@ -63,7 +63,6 @@ def register():
     else:
         start()
 
-
 # create tour packages
 def createPackage():
     os.system('clear')

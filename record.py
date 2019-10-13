@@ -1,5 +1,5 @@
 import psycopg2
-from  psycopg2 import Error
+# from  psycopg2 import Error
 
 
 # noinspection PyUnboundLocalVariable
@@ -12,7 +12,6 @@ class Record:
         password = ""
         port = "5432"
         database = "boholtours"
-
 
         @staticmethod
         def initConnect():
@@ -38,7 +37,7 @@ class Record:
             # closing database connection.
                 if conn:
                     cur.close()
-                    connection.close()
+                    conn.close()
                     print("PostgreSQL connection is closed")
 
         @staticmethod
@@ -82,7 +81,7 @@ class Record:
                 conn = Record.initConnect()
                 cur = conn.cursor()
                 query = '''{}'''.format(sql)
-                cursor.execute(query)
+                cur.execute(query)
                 record = cur.fetchone()
                 conn.commit()
 
