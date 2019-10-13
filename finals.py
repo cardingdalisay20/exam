@@ -2,7 +2,7 @@ import os
 from user import User
 from package import Package
 from record import Record
-# from booking import Booking
+from booking import Booking
 
 # validating the menu choices
 def check(args):
@@ -92,7 +92,47 @@ def createPackage():
 
 # book tour packages
 def bookTour():
-    print("book tour")
+    User.printUserRecords()
+    print("PLEASE SELECT FROM USER RECORDS")
+    user_id = int(raw_input("User ID: "))
+    userModel = User.getbyID(user_id)
+
+    Package.printPackageRecords()
+    print("PLEASE SELECT FROM EVENT PACKAGES")
+    event_id = int(raw_input("Event ID: "))
+    packageModel = Package.getbyID(event_id)
+    head_count = int(raw_input("Number of participants: "))
+    amount = packageModel.head_rate
+    totalAmount = head_count * amount
+
+    choice = option("Do you have a deposit slip")
+    if choice == "Y":
+        receipt_number = int(raw_input("Deposit receipt number: "))
+        payment_status = 'paid'
+    else:
+        receipt_number = ''
+        payment_status = 'unpaid'
+    bookModel = Booking()
+    bookModel.package_id = packageModel.event_id
+    bookModel.guest_id = userModel.user_id
+    bookModel.head_count = head_count
+    bookModel.amount_due = totalAmount
+    bookModel.receipt_number = receipt_number
+    bookModel.payment_status = payment_status
+
+    choice = option("Would you like to save changes")
+    if choice == "Y":
+        bookModel.save()
+        print("User successfully booked!")
+    else:
+        start()
+    choice = option("Would you like to book another user")
+    if choice == "Y":
+        bookTour()
+    else:
+        start()
+
+
 
 # check existing booking record
 def checkBooking():

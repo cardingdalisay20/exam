@@ -6,7 +6,6 @@ import psycopg2
 class Record:
         def __init__(self):
             pass
-
         host = "127.0.0.1"
         user = "postgres"
         password = ""
