@@ -107,6 +107,7 @@ def bookTour():
     else:
         receipt_number = ''
         payment_status = 'unpaid'
+
     bookModel = Booking()
     bookModel.package_id = packageModel.event_id
     bookModel.guest_id = userModel.user_id
@@ -132,7 +133,51 @@ def checkBooking():
     Booking.printBookingRecords()
 
 def updateBooking():
-    print("update booking")
+    Booking.printBookingRecords()
+    print("PLEASE SELECT FROM BOOKING RECORDS")
+    book_id = int(raw_input("Book ID: "))
+
+    Package.printPackageRecords()
+    print("PLEASE SELECT FROM EVENT RECORDS")
+    event_id = int(raw_input("Event ID: "))
+
+    User.printUserRecords()
+    print("PLEASE SELECT FROM USER RECORDS")
+    guest_id = int(raw_input("User ID: "))
+    userModel = User.getbyID(guest_id)
+    head_count = int(raw_input("Number of participants: "))
+    packageModel = Package.getbyID(event_id)
+    amount = packageModel.head_rate
+    totalAmount = head_count * amount
+
+    choice = option("Do you have a deposit slip")
+    if choice == "Y" or "y":
+        receipt_number = int(raw_input("Deposit receipt number: "))
+        payment_status = 'paid'
+    else:
+        receipt_number = ''
+        payment_status = 'unpaid'
+
+    bookModel = Booking()
+    bookModel.package_id = packageModel.event_id
+    bookModel.guest_id = userModel.user_id
+    bookModel.head_count = head_count
+    bookModel.amount_due = totalAmount
+    bookModel.receipt_number = receipt_number
+    bookModel.payment_status = payment_status
+
+    choice = option("Would you like to save changes")
+    if choice == "Y" or "y":
+        bookModel.update()
+        print("Record successfully updated!")
+    else:
+        start()
+    choice = option("Would you like to update another booking")
+    if choice == "Y" or "y":
+        updateBooking()
+    else:
+        start()
+
 
 # cancel existing booking record
 def cancelBooking():
