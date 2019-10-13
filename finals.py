@@ -52,13 +52,13 @@ def register():
     model.setFullname()
 
     choice = option("Would you like to save changes")
-    if choice == "Y":
+    if choice == "Y" or "y":
         model.save()
         print("User records successfully saved!")
     else:
         start()
     choice = option("Would you like to register another user")
-    if choice == "Y":
+    if choice == "Y" or "y":
         register()
     else:
         start()
@@ -73,19 +73,14 @@ def createPackage():
     event.setRate(raw_input("Rate per Head: "))
     event.addInclusion(raw_input("Inclusion: "))
 
-    # key = option("Would you like to add inclusions")
-    # while key == "Y" or key == "y":
-    #     event.addInclusion(raw_input("Inclusion: "))
-    #     key = option("Would you like to add more inclusions")
-
     choice = option("Would you like to save changes")
-    if choice == "Y":
+    if choice == "Y" or "y":
         event.save()
         print("Event records successfully saved!")
     else:
         start()
     choice = option("Would you like to create another event")
-    if choice == "Y":
+    if choice == "Y" or "y":
         createPackage()
     else:
         start()
@@ -106,7 +101,7 @@ def bookTour():
     totalAmount = head_count * amount
 
     choice = option("Do you have a deposit slip")
-    if choice == "Y":
+    if choice == "Y" or "y":
         receipt_number = int(raw_input("Deposit receipt number: "))
         payment_status = 'paid'
     else:
@@ -121,13 +116,13 @@ def bookTour():
     bookModel.payment_status = payment_status
 
     choice = option("Would you like to save changes")
-    if choice == "Y":
+    if choice == "Y" or "y":
         bookModel.save()
         print("User successfully booked!")
     else:
         start()
     choice = option("Would you like to book another user")
-    if choice == "Y":
+    if choice == "Y" or "y":
         bookTour()
     else:
         start()
