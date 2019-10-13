@@ -1,3 +1,4 @@
+import os
 from record import Record
 
 class Package:
@@ -46,3 +47,22 @@ class Package:
         package.event_name = packageRecord[5]
 
         return package
+
+    @staticmethod
+    def getRecords():
+        query = "select * from packages;"
+        eventRecords = Record.fetchAllRecord(query)
+
+        return eventRecords
+
+    @staticmethod
+    def printPackageRecords():
+        Records = Package.getRecords()
+        os.system('clear')
+
+        print(
+            "-----------------------------------------------------EVENT PACKAGES------------------------------------------------------------")
+        for row in Records:
+            print('| Event ID: {} | Event Name: {} | Location: {} | Duration: {} | Head Rate: {} | Inclusions: {} |'.format(row[0], row[5], row[1],row[2], row[3], row[1]))
+            print(
+                "-----------------------------------------------------------------------------------------------------------------------------")
