@@ -19,6 +19,13 @@ class Booking:
                 "VALUES('{0}','{1}','{2}','{3}','{4}','{5}');".format(self.package_id, self.guest_id, self.head_count, self.amount_due, self.receipt_number, self.payment_status)
         Record.runQuery(query)
 
+    def update(self):
+        query = "update reservations set guest_id = {0}, head_count = {1},  amount_due = {2}, receipt_number = {3}, payment_status = {4} where booking_id = {5};"\
+            .format(self.package_id, self.guest_id, self.head_count, self.amount_due, self.receipt_number, self.payment_status, self.booking_id)
+
+        Record.runQuery(query)
+
+
     @staticmethod
     def getRecords():
         query = "select * from reservations;"

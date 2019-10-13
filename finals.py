@@ -135,7 +135,7 @@ def checkBooking():
 def updateBooking():
     Booking.printBookingRecords()
     print("PLEASE SELECT FROM BOOKING RECORDS")
-    book_id = int(raw_input("Book ID: "))
+    booking_id = int(raw_input("Book ID: "))
 
     Package.printPackageRecords()
     print("PLEASE SELECT FROM EVENT RECORDS")
@@ -159,6 +159,7 @@ def updateBooking():
         payment_status = 'unpaid'
 
     bookModel = Booking()
+    bookModel.booking_id = booking_id
     bookModel.package_id = packageModel.event_id
     bookModel.guest_id = userModel.user_id
     bookModel.head_count = head_count

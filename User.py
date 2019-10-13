@@ -48,6 +48,10 @@ class User:
 
         return model
 
+    # @staticmethod
+    # def updatebyID():
+
+
     @staticmethod
     def getRecords():
         query = "select * from users;"
