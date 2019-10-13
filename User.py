@@ -1,5 +1,6 @@
-from record import Record
 import os
+from record import Record
+
 class User:
     def __init__(self):
         self.user_id = ''

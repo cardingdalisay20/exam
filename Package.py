@@ -2,7 +2,6 @@ import os
 from record import Record
 
 class Package:
-
     def __init__(self):
         self.event_id = ''
         self.event_name = ''

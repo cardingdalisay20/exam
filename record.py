@@ -1,8 +1,7 @@
 import psycopg2
 # from  psycopg2 import Error
-
-
 # noinspection PyUnboundLocalVariable
+
 class Record:
         def __init__(self):
             pass
