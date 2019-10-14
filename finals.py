@@ -52,13 +52,13 @@ def register():
     model.setFullname()
 
     choice = option("Would you like to save changes")
-    if choice == "Y" or "y":
+    if choice == "Y":
         model.save()
         print("User records successfully saved!")
     else:
         start()
     choice = option("Would you like to register another user")
-    if choice == "Y" or "y":
+    if choice == "Y":
         register()
     else:
         start()
@@ -117,13 +117,13 @@ def bookTour():
     bookModel.payment_status = payment_status
 
     choice = option("Would you like to save changes")
-    if choice == "Y" or "y":
+    if choice == "Y":
         bookModel.save()
         print("User successfully booked!")
     else:
         start()
     choice = option("Would you like to book another user")
-    if choice == "Y" or "y":
+    if choice == "Y":
         bookTour()
     else:
         start()
@@ -131,6 +131,12 @@ def bookTour():
 # check existing booking record
 def checkBooking():
     Booking.printBookingRecords()
+
+    choice = option("Would you like to exit to main menu")
+    if choice == "Y":
+        start()
+    else:
+        exit()
 
 def updateBooking():
     Booking.printBookingRecords()
@@ -168,13 +174,14 @@ def updateBooking():
     bookModel.payment_status = payment_status
 
     choice = option("Would you like to save changes")
-    if choice == "Y" or "y":
+    if choice == "Y":
         bookModel.update()
         print("Record successfully updated!")
     else:
         start()
+
     choice = option("Would you like to update another booking")
-    if choice == "Y" or "y":
+    if choice == "Y":
         updateBooking()
     else:
         start()
