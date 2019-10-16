@@ -186,7 +186,6 @@ def updateBooking():
     else:
         start()
 
-
 # cancel existing booking record
 def cancelBooking():
     print("cancel booking")
@@ -195,6 +194,7 @@ def check_db():
     Record.checkConnection()
 
     # initializes the program
+
 def start():
     os.system('clear')
     menu()
